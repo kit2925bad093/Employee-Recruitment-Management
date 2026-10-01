@@ -1,0 +1,6 @@
+{
+  "name": "TalentPulse ERMS - Employee Recruitment Management System",
+  "description": "Enterprise recruitment management system featuring full hiring lifecycle, AI-powered resume screening, role-based workflows, interview scorecards, and onboarding.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
