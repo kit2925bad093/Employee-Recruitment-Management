@@ -15,7 +15,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [role, setRole] = useState<UserRole>('CANDIDATE');
-  const [registrationCode, setRegistrationCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -27,7 +26,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
       if (mode === 'login') {
         await login(email, password, role);
       } else {
-        await register({ email, password, fullName, role, registrationCode });
+        await register({ email, password, fullName, role });
       }
       onClose();
     } catch (err: any) {
@@ -89,19 +88,17 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
 
           {mode === 'register' && (
             <div>
-              <div>
-                <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">Full Legal Name *</label>
-                <div className="relative">
-                  <UserIcon className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
-                  <input
-                    type="text"
-                    required
-                    value={fullName}
-                    onChange={e => setFullName(e.target.value)}
-                    placeholder="Jane Doe"
-                    className="w-full rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white pl-9 pr-3 py-2 text-xs"
-                  />
-                </div>
+              <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">Name *</label>
+              <div className="relative">
+                <UserIcon className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                <input
+                  type="text"
+                  required
+                  value={fullName}
+                  onChange={e => setFullName(e.target.value)}
+                  placeholder="Jane Doe"
+                  className="w-full rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white pl-9 pr-3 py-2 text-xs"
+                />
               </div>
             </div>
           )}
@@ -120,25 +117,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
               <option value="CANDIDATE">Candidate</option>
             </select>
           </div>
-
-          {mode === 'register' && role !== 'CANDIDATE' && (
-            <div>
-              <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">
-                {role === 'ADMIN' ? 'Admin Registration Code *' : 'Staff Registration Code *'}
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
-                <input
-                  type="password"
-                  required
-                  value={registrationCode}
-                  onChange={e => setRegistrationCode(e.target.value)}
-                  placeholder="Enter your authorized registration code"
-                  className="w-full rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white pl-9 pr-3 py-2 text-xs"
-                />
-              </div>
-            </div>
-          )}
 
           <div>
             <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">Email Address *</label>

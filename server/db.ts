@@ -321,7 +321,54 @@ class DatabaseStore {
     ];
 
     // 2. Initial Users
-    this.users = [];
+    this.users = [
+      {
+        id: 'usr-admin',
+        email: 'admin@talentpulse.io',
+        passwordHash: 'admin123',
+        fullName: 'Victoria Vance',
+        role: 'ADMIN',
+        departmentId: 'dept-5',
+        departmentName: 'Sales & Growth',
+        status: 'ACTIVE',
+        avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Victoria%20Vance&backgroundColor=4f46e5,06b6d4,10b981',
+        createdAt: '2026-01-01T09:00:00Z',
+      },
+      {
+        id: 'usr-hr',
+        email: 'hr@talentpulse.io',
+        passwordHash: 'hr123',
+        fullName: 'Jonathan Miller',
+        role: 'HR',
+        departmentId: 'dept-4',
+        departmentName: 'Human Resources & Talent',
+        status: 'ACTIVE',
+        avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Jonathan%20Miller&backgroundColor=4f46e5,06b6d4,10b981',
+        createdAt: '2026-01-02T09:00:00Z',
+      },
+      {
+        id: 'usr-interviewer',
+        email: 'interviewer@talentpulse.io',
+        passwordHash: 'interviewer123',
+        fullName: 'Devon Chen',
+        role: 'INTERVIEWER',
+        departmentId: 'dept-1',
+        departmentName: 'Engineering',
+        status: 'ACTIVE',
+        avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Devon%20Chen&backgroundColor=4f46e5,06b6d4,10b981',
+        createdAt: '2026-01-03T09:00:00Z',
+      },
+      {
+        id: 'usr-candidate-1',
+        email: 'candidate@example.com',
+        passwordHash: 'password123',
+        fullName: 'Alex Rivera',
+        role: 'CANDIDATE',
+        status: 'ACTIVE',
+        avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Alex%20Rivera&backgroundColor=4f46e5,06b6d4,10b981',
+        createdAt: '2026-02-01T11:00:00Z',
+      },
+    ];
 
     // 3. Vacancies
     this.vacancies = [

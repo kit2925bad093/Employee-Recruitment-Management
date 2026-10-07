@@ -30,7 +30,7 @@ app.use(express.json({ limit: '15mb' }));
 
 // POST /api/auth/register
 app.post('/api/auth/register', (req: Request, res: Response) => {
-  const { email, password, fullName, role: requestedRole = 'CANDIDATE', registrationCode } = req.body;
+  const { email, password, fullName, role: requestedRole = 'CANDIDATE' } = req.body;
   const allowedRoles: User['role'][] = ['ADMIN', 'HR', 'INTERVIEWER', 'CANDIDATE'];
 
   if (!allowedRoles.includes(requestedRole)) {
@@ -39,15 +39,6 @@ app.post('/api/auth/register', (req: Request, res: Response) => {
 
   if (!email || !password || !fullName) {
     return res.status(400).json({ error: 'Full name, email, and password are required.' });
-  }
-
-  const requiredRegistrationCode = requestedRole === 'ADMIN'
-    ? process.env.ADMIN_REGISTRATION_CODE
-    : requestedRole === 'CANDIDATE'
-      ? undefined
-      : process.env.STAFF_REGISTRATION_CODE;
-  if (requestedRole !== 'CANDIDATE' && (!requiredRegistrationCode || registrationCode !== requiredRegistrationCode)) {
-    return res.status(403).json({ error: 'A valid registration code is required for this account type.' });
   }
 
   const existing = db.users.find(u => u.email.toLowerCase() === email.toLowerCase());

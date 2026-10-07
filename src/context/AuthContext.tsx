@@ -8,7 +8,7 @@ interface AuthContextType {
   token: string | null;
   loading: boolean;
   login: (email: string, password: string, role: UserRole) => Promise<void>;
-  register: (payload: { email: string; password: string; fullName: string; role: UserRole; registrationCode?: string }) => Promise<void>;
+  register: (payload: { email: string; password: string; fullName: string; role: UserRole }) => Promise<void>;
   logout: () => void;
   refreshUser: () => Promise<void>;
 }
@@ -49,7 +49,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCandidate(data.candidate || null);
   };
 
-  const register = async (payload: { email: string; password: string; fullName: string; role: UserRole; registrationCode?: string }) => {
+  const register = async (payload: { email: string; password: string; fullName: string; role: UserRole }) => {
     const data = await api.register(payload);
     setStoredToken(data.token);
     setToken(data.token);

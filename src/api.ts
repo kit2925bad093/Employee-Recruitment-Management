@@ -62,7 +62,7 @@ export const api = {
       body: JSON.stringify(credentials),
     }),
 
-  register: (payload: { email: string; password: string; fullName: string; role: UserRole; registrationCode?: string }) =>
+  register: (payload: { email: string; password: string; fullName: string; role: UserRole }) =>
     request<{ token: string; user: User; candidate?: Candidate }>('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify(payload),
